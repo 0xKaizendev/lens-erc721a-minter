@@ -1,66 +1,45 @@
-## Foundry
+# LensNFTMinter
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Context
 
-Foundry consists of:
+- Integration of Lens Protocol with ERC721A for efficient NFT minting.
+- Aimed at leveraging the Lens Protocol's social media capabilities with the NFT ecosystem.
+- Focus on optimizing gas costs for batch minting of NFTs.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Goal
 
-## Documentation
+- Develop a smart contract that allows users to mint ERC721A NFTs directly via LensHub contracts.
+- Ensure the contract is compatible with Lens Protocol's Publication Actions.
+- Optimize for gas efficiency, especially for batch minting scenarios.
 
-https://book.getfoundry.sh/
+## Interface
 
-## Usage
+LensNFTMintHelper
 
-### Build
+- Must comply with ERC721A standards for NFT minting.
+- Interact seamlessly with Lens Protocol's Publication Actions.
 
-```shell
-$ forge build
-```
+### Fields
 
-### Test
+- `mintNFT`: Function to mint NFTs.
+- `batchMintNFT`: Function for batch minting of NFTs.
+- `lensPublicationId`: ID of the Lens publication associated with the minting action.
 
-```shell
-$ forge test
-```
+### Main Functions
 
-### Format
+- `initializePublicationAction`: Initializes the action module for a publication.
+- `processPublicationAction`: Processes the minting action for a given publication.
+- `mint`: Function to mint a single NFT.
+- `batchMint`: Function to mint multiple NFTs in a single transaction.
 
-```shell
-$ forge fmt
-```
+### Config Functions
 
-### Gas Snapshots
+- `setLensHub`: Sets the LensHub address.
+- `updateMintingParameters`: Updates parameters related to the minting process.
 
-```shell
-$ forge snapshot
-```
+### Roles
 
-### Anvil
+- `admin`: Single account with the ability to update contract parameters and interact with LensHub.
+- `user`: General users who can mint NFTs through the contract.
 
-```shell
-$ anvil
-```
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
